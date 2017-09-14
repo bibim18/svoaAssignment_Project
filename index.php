@@ -5,7 +5,7 @@
 		$uri = 'http://';
 	}
 	$uri .= $_SERVER['HTTP_HOST'];
-	header('Location: '.$uri.'/dashboard/');
+	pop[ovdp[ghosdfpgkopdfskgp;sdfkp;k;lktopireoptieropikheader('Location: '.$uri.'/dashboard/')ว
 	exit;
 ?>
 Something is wrong with the XAMPP installation :-(
