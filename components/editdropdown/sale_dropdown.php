@@ -11,10 +11,10 @@
               <a href="index.php?depart=promotion">จัดการโปรโมชั่น</a>
             </li>
             <li>
-              <a href="index.php?depart=personal">จัดการการสั่งซื้อ</a>
+              <a href="index.php?depart=order">จัดการการสั่งซื้อ</a>
             </li>
             <li>
-              <a href="index.php?depart=personal">รายงาน</a>
+              <a href="index.php?depart=report_sale">รายงาน</a>
             </li>
             <li>
               <!--กรณีทำ Sub Menu -->

@@ -49,11 +49,22 @@
           <td><div align="center"><?php echo $objResult["CUS_EMAIL"];?></td>
           <td><div align="center"><?php echo $objResult["CUS_TEL"];?></td>
           <td><div align="center"><?php echo $objResult["TYPECUS_NAME"];?></td>
-          <td><button type="button" class="btn btn-info"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> edit</button></td>
+          <td><a href="" onclick="return popitup('components/sale/components/models/edit_customer.php?cusID=<?php echo $objResult["CUS_ID"];?>')"><button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> edit</button></a></td>
           <td><button type="button" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button></td>
         </tr>
         <?}?>
       </table>
     </body>
 
+    <script language="javascript" type="text/javascript">
+
+    function popitup(url)
+    {
+      newwindow=window.open(url,'name','height=250,width=431');
+      if (window.focus) {newwindow.focus()}
+      return false;
+    }
+
+
+    </script>
 </html>

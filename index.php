@@ -29,11 +29,15 @@
       <?php
 
 
-        $file = (! empty($_GET["depart"])) ? $_GET["depart"] : require ("components/template/countdetail.php"); ;
+        $file = (! empty($_GET["depart"])) ? $_GET["depart"] : require ("components/template/countdetail.php"); 
         if ($file=="customer")
             include ("components/sale/customer.php");
         if ($file=="promotion")
-            include ("components/personnal/index.php");
+            include ("components/sale/promotion.php");
+        if ($file=="order")
+          include ("components/sale/order.php");
+        if ($file=="report_sale")
+            include ("components/sale/report_sale.php");
       ?>
 
       <!-- footer -->
