@@ -30,13 +30,9 @@
 
 
         $file = (! empty($_GET["depart"])) ? $_GET["depart"] : require ("components/template/countdetail.php"); ;
-        if ($file=="sale")
-            include ("components/sale/index.php");
-        if ($file=="personal")
-            include ("components/personnal/index.php");
-        if ($file=="service")
-            include ("components/personnal/index.php");
-        if ($file=="service")
+        if ($file=="customer")
+            include ("components/sale/customer.php");
+        if ($file=="promotion")
             include ("components/personnal/index.php");
       ?>
 
@@ -47,7 +43,7 @@
       <!--logout-->
       <?php include("components/template/logout.php") ?>
       <!--logout-->
-      
+
       <?php include("components/template/scripts.php") ?>
   </div>
 </body>
