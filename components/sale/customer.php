@@ -22,38 +22,47 @@
         <li class="breadcrumb-item active">Library</li>
       </ol> -->
       <?php
+
           include 'connect.php';
           $sql="select cus_id,cus_name,cus_address,cus_email,cus_tel,typecus_name from customer join type_customer using (typecus_id)";
           $objParse = oci_parse($objConnect, $sql);
           oci_execute ($objParse,OCI_DEFAULT);
       ?>
-      <table id="myTable" class="display" cellspacing="0" width="100%">
-        <thead>
-          <td width="100px">รหัสลูกค้าองค์กร</td>
-          <td>ชื่อลูกค้าองค์กร</td>
-          <td>ที่อยู่</td>
-          <td>อีเมล์</td>
-          <td>เบอร์โทรศัพท์</td>
-          <td width="200px">ประเภทลูกค้าองค์กร</td>
-          <td>edit</td>
-          <td>delete</td>
-        </thead>
-        <?php
-        while($objResult = oci_fetch_array($objParse,OCI_BOTH))
-        {
-        ?>
-        <tr>
-          <td><div align="center"><?php echo $objResult["CUS_ID"];?></td>
-          <td><div align="center"><?php echo $objResult["CUS_NAME"];?></td>
-          <td><div align="center"><?php echo $objResult["CUS_ADDRESS"];?></td>
-          <td><div align="center"><?php echo $objResult["CUS_EMAIL"];?></td>
-          <td><div align="center"><?php echo $objResult["CUS_TEL"];?></td>
-          <td><div align="center"><?php echo $objResult["TYPECUS_NAME"];?></td>
-          <td><a href="" onclick="return popitup('components/sale/components/models/edit_customer.php?cusID=<?php echo $objResult["CUS_ID"];?>')"><button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> edit</button></a></td>
-          <td><button type="button" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button></td>
-        </tr>
-        <?}?>
-      </table>
+      <div class="card" style="margin-left:20px; margin-right:20px; margin-bottom:20px;">
+        <div class="card-header">
+          จัดการลูกค้า
+        </div>
+        <div class="card-block">
+            <br>
+            <table id="myTable" class="display" cellspacing="0" width="100%">
+              <thead>
+                <td width="100px">รหัสลูกค้าองค์กร</td>
+                <td>ชื่อลูกค้าองค์กร</td>
+                <td>ที่อยู่</td>
+                <td>อีเมล์</td>
+                <td>เบอร์โทรศัพท์</td>
+                <td width="200px">ประเภทลูกค้าองค์กร</td>
+                <td>edit</td>
+                <td>delete</td>
+              </thead>
+              <?php
+              while($objResult = oci_fetch_array($objParse,OCI_BOTH))
+              {
+              ?>
+              <tr>
+                <td><div align="center"><?php echo $objResult["CUS_ID"];?></td>
+                <td><div align="center"><?php echo $objResult["CUS_NAME"];?></td>
+                <td><div align="center"><?php echo $objResult["CUS_ADDRESS"];?></td>
+                <td><div align="center"><?php echo @$objResult["CUS_EMAIL"];?></td>
+                <td><div align="center"><?php echo $objResult["CUS_TEL"];?></td>
+                <td><div align="center"><?php echo $objResult["TYPECUS_NAME"];?></td>
+                <td><a href="" onclick="return popitup('components/sale/components/models/edit_customer.php?cusID=<?php echo $objResult["CUS_ID"];?>')"><button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> edit</button></a></td>
+                <td><button type="button" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button></td>
+              </tr>
+              <?php } ?>
+            </table>
+          </div>
+      </div>
     </body>
 
     <script language="javascript" type="text/javascript">

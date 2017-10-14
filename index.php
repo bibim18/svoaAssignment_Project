@@ -27,7 +27,7 @@
 
 
       <?php
-
+        
 
         $file = (! empty($_GET["depart"])) ? $_GET["depart"] : require ("components/template/countdetail.php"); 
         if ($file=="customer")
@@ -38,6 +38,8 @@
           include ("components/sale/order.php");
         if ($file=="report_sale")
             include ("components/sale/report_sale.php");
+        if ($file=="personel")
+            include ("components/personnel/personnel.php");
       ?>
 
       <!-- footer -->

@@ -27,6 +27,12 @@
           $objParse = oci_parse($objConnect, $sql);
           oci_execute ($objParse,OCI_DEFAULT);
       ?>
+      <div class="card" style="margin-left:20px; margin-right:20px; margin-bottom:20px;">
+        <div class="card-header">
+          จัดการสั่งซื้อ
+        </div>
+        <div class="card-block">
+            <br>
       <table id="myTables" class="display" cellspacing="0" width="100%">
         <thead>
           <td width="120px">ชื่อลูกค้าองค์กร</td>
@@ -50,8 +56,12 @@
           <td><button type="button" class="btn btn-info"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> edit</button></td>
           <td><button type="button" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button></td>
         </tr>
-        <?}?>
+        <?php
+        }
+        ?> 
       </table>
+      </div>
+    </div>
     </body>
 
 </html>
