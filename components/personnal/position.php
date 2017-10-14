@@ -21,7 +21,14 @@
 
 <div class="card" style="margin-left:20px; margin-right:20px; margin-bottom:20px;">
     <div class="card-header">
+          <div class="name-header" style="width:93%; float:left; margin-top:4px;">
           จัดการตำแหน่งงาน
+          </div>
+          <div style="float:left;">
+              <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#adddepartment" align = "right" >
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i> เพิ่ม
+              </button>
+          </div>
     </div>
     <div class="card-block">
         <?php
@@ -56,5 +63,53 @@
         </table>
     </div>
 </div>
+
+<!-- จัดการ button -->
+    <?php include("model/adddepartment.php") ?>
+<!-- จบจัดการ button -->
+
+
+<!-- ควบคุมปุ่มเพิ่มฝ่าย-->
+<script>
+$('#formadddepartment').submit(function(evt)
+{
+            evt.preventDefault();
+            var formData = new FormData($(this)[0]);
+            $.ajax({
+                  async: true,
+                  url: 'components/personnal/programming/program_adddepartment.php',
+                  type: 'POST',
+                  data: formData,
+                  async: false,
+                  cache: false,
+                  contentType: false,
+                  processData: false,
+                  success :  function(response)
+                  {
+                        console.log(response);
+                        console.log("hi");
+                    //   if(response.trim()=="0")
+                    //   {
+                    //        $("#insert_news").modal('toggle');
+                    //       //  $('.modal-backdrop').hide();
+                    //        $("#error").fadeIn(1000, function()
+                    //        {
+                    //                 $("#error").html('<div class="alert alert-success"> <span class="glyphicon glyphicon-info-sign"></span> &nbsp; เพิ่มข่าวสารเรียบร้อยแล้ว ! !</div>');
+                    //        });
+                    //   }
+                    //   else
+                    //   {
+                    //        $("#insert_news").modal('toggle');
+                    //       //  $('.modal-backdrop').hide();
+                    //        $("#error").fadeIn(1000, function()
+                    //        {
+                    //                  $("#error").html('<div class="alert alert-success"> <span class="glyphicon glyphicon-info-sign"></span> &nbsp; ผิดพลาด ! !</div>');
+                    //        });
+                    //   }
+                   }
+            });
+});
+
+</script>
 </body>
 </html>
