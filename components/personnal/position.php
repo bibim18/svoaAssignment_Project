@@ -18,11 +18,11 @@
     </script>
 </head>
 <body>
-
+<div id="error"></div>
 <div class="card" style="margin-left:20px; margin-right:20px; margin-bottom:20px;">
     <div class="card-header">
           <div class="name-header" style="width:93%; float:left; margin-top:4px;">
-          จัดการตำแหน่งงาน
+          จัดการแผนก
           </div>
           <div style="float:left;">
               <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#adddepartment" align = "right" >
@@ -55,7 +55,7 @@
               <tr>
                 <td><div align="center"><?php echo $objResult["ID_DEPARTMENT"];?></td>
                 <td><div align="center"><?php echo $objResult["NAME_DEPARTMENTS"];?></td>
-                <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> edit</button></a> <button type="button" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button></td>
+                <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#editposition"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> edit</button></a> <button type="button" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button></td>
               </tr>
         <?php 
               } 
@@ -64,52 +64,83 @@
     </div>
 </div>
 
-<!-- จัดการ button -->
-    <?php include("model/adddepartment.php") ?>
-<!-- จบจัดการ button -->
+<!-- จัดการ model (popup)-->
 
+    <!-- เพิ่มแผนก -->
+    <?php include("model/adddepartment.php") ?>
+    <!-- เพิ่มแผนก -->
+
+    <!-- แก้ไขแผนก -->
+    <?php include("model/editdepartment.php") ?>
+    <!-- แก้ไขแผนก -->
+
+    <!-- ลบแผนก -->
+    <?php include("model/deletedepartment.php") ?>
+    <!-- ลบแผนก -->
+
+<!-- จบจัดการ model (popup) -->
 
 <!-- ควบคุมปุ่มเพิ่มฝ่าย-->
 <script>
-$('#formadddepartment').submit(function(evt)
-{
-            evt.preventDefault();
-            var formData = new FormData($(this)[0]);
-            $.ajax({
-                  async: true,
-                  url: 'components/personnal/programming/program_adddepartment.php',
-                  type: 'POST',
-                  data: formData,
-                  async: false,
-                  cache: false,
-                  contentType: false,
-                  processData: false,
-                  success :  function(response)
-                  {
-                        console.log(response);
-                        console.log("hi");
-                    //   if(response.trim()=="0")
-                    //   {
-                    //        $("#insert_news").modal('toggle');
-                    //       //  $('.modal-backdrop').hide();
-                    //        $("#error").fadeIn(1000, function()
-                    //        {
-                    //                 $("#error").html('<div class="alert alert-success"> <span class="glyphicon glyphicon-info-sign"></span> &nbsp; เพิ่มข่าวสารเรียบร้อยแล้ว ! !</div>');
-                    //        });
-                    //   }
-                    //   else
-                    //   {
-                    //        $("#insert_news").modal('toggle');
-                    //       //  $('.modal-backdrop').hide();
-                    //        $("#error").fadeIn(1000, function()
-                    //        {
-                    //                  $("#error").html('<div class="alert alert-success"> <span class="glyphicon glyphicon-info-sign"></span> &nbsp; ผิดพลาด ! !</div>');
-                    //        });
-                    //   }
-                   }
-            });
-});
+        // เพิ่มฝ่าย
+        $('#formadddepartment').submit(function(evt)
+        {
+                    evt.preventDefault();
+                    var formData = new FormData($(this)[0]);
+                    $.ajax({
+                        async: true,
+                        url: 'components/personnal/programming/program_adddepartment.php',
+                        type: 'POST',
+                        data: formData,
+                        async: false,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        success :  function(response)
+                        {
+                                if(response.trim()=="0")
+                                {
+                                    $("#adddepartment").modal('toggle');
+                                    //  $('.modal-backdrop').hide();
+                                    $("#error").fadeIn(1000, function()
+                                    {
+                                                $("#error").html('<div class="container"><div class="alert alert-success"> <span class="glyphicon glyphicon-info-sign"></span> &nbsp; </div></div>');
+                                    });
+                                }
+                                else
+                                {
+                                    $("#adddepartment").modal('toggle');
+                                    //  $('.modal-backdrop').hide();
+                                    $("#error").fadeIn(1000, function()
+                                    {
+                                                $("#error").html('<div class="container"><div class="alert alert-success"> <span class="glyphicon glyphicon-info-sign"></span> &nbsp; สำเร็จ ! !</div></div>');
+                                    });
+                                }
+                        }
+                    });
+        });
 
+        //แก้ไขฝ่าย
+
+        $('#edit_news').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget) // Button that triggered the modal
+            var recipient = button.data('whatever') // Extract info from data-* attributes
+            var modal = $(this);
+            var dataString = 'key=' + recipient;
+              $.ajax({
+                  async: true,
+                  type: "GET",
+                  url: "components/personnal/programming/program_adddepartment.php",
+                  data: dataString,
+                  cache: false,
+                  success: function (data) {
+                      modal.find('.p').html(data);
+                  },
+                  error: function(err) {
+                      console.log(err);
+                  }
+              });
+      })
 </script>
 </body>
 </html>

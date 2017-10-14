@@ -23,7 +23,7 @@
                         oci_execute ($objParse,OCI_DEFAULT);
                         $objResult = oci_fetch_array($objParse,OCI_BOTH);
                     ?>
-                    <input type="text" name="id_department" class="form-control" value="<?php echo $objResult["ID_DEPARTMENT"]+1;?>" disabled>
+                    <input type="text" name="id_department" class="form-control" value="<?php echo $objResult["ID_DEPARTMENT"]+1;?>">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">ชื่อฝ่าย *</label>
