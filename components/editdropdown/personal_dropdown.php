@@ -8,30 +8,30 @@
               <a class="nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti2">ข้อมูลหน่วยงาน</a>
               <ul class="sidenav-third-level collapse" id="collapseMulti2">
                 <li>
-                  <a href="#">จัดการตำแหน่ง</a>
+                  <a href="index.php?depart=position">จัดการตำแหน่ง</a>
                 </li>
                 <li>
-                  <a href="#">จัดการแผนก</a>
+                  <a href="index.php?depart=department">จัดการแผนก</a>
                 </li>
                 <li>
-                  <a href="#">จัดการฐานเงินเดือน</a>
+                  <a href="index.php?depart=basesalary">จัดการฐานเงินเดือน</a>
                 </li>
                 <li>
-                  <a href="#">จัดการผู้ดูแลระบบ</a>
+                  <a href="index.php?depart=admin">จัดการผู้ดูแลระบบ</a>
                 </li>
               </ul>
             </li>
             <li>
-              <a href="index.php?depart=personal">จัดการข้อมูลพนักงาน</a>
+              <a href="index.php?depart=emp">จัดการข้อมูลพนักงาน</a>
             </li>
             <li>
-              <a href="index.php?depart=personal">จัดการสวัสดิการพนักงาน</a>
+              <a href="index.php?depart=benefits">จัดการสวัสดิการพนักงาน</a>
             </li>
             <li>
-              <a href="index.php?depart=personal">จัดการการฝึกอบรม</a>
+              <a href="index.php?depart=train">จัดการการฝึกอบรม</a>
             </li>
             <li>
-              <a href="index.php?depart=personel">รายงาน</a>
+              <a href="index.php?depart=reportemp">ออกรายงาน</a>
             </li>
             <li>
               <!--กรณีทำ Sub Menu -->

@@ -35,21 +35,21 @@
         if ($file=="promotion")
             include ("components/sale/promotion.php");
         if ($file=="order")
-          include ("components/sale/order.php");
+            include ("components/sale/order.php");
         if ($file=="report_sale")
             include ("components/sale/report_sale.php");
-        if ($file=="personel")
-            include ("components/personnel/personnel.php");
+        if ($file=="position")
+            include ("components/personnal/position.php");
       ?>
+
+
 
       <!-- footer -->
       <?php include("components/template/footer.php") ?>
       <!-- footer -->
-
       <!--logout-->
       <?php include("components/template/logout.php") ?>
       <!--logout-->
-
       <?php include("components/template/scripts.php") ?>
   </div>
 </body>
