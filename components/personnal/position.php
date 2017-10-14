@@ -55,7 +55,7 @@
               <tr>
                 <td><div align="center"><?php echo $objResult["ID_DEPARTMENT"];?></td>
                 <td><div align="center"><?php echo $objResult["NAME_DEPARTMENTS"];?></td>
-                <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#editposition"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> edit</button></a> <button type="button" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button></td>
+                <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#editdepartment" data-whatever="<?php echo $objResult["ID_DEPARTMENT"]; ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> edit</button></a> <button type="button" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button></td>
               </tr>
         <?php 
               } 
@@ -122,7 +122,8 @@
 
         //แก้ไขฝ่าย
 
-        $('#edit_news').on('show.bs.modal', function (event) {
+        $('#editdepartment').on('show.bs.modal', function (event) {
+            alert("aaa");
             var button = $(event.relatedTarget) // Button that triggered the modal
             var recipient = button.data('whatever') // Extract info from data-* attributes
             var modal = $(this);
@@ -130,10 +131,11 @@
               $.ajax({
                   async: true,
                   type: "GET",
-                  url: "components/personnal/programming/program_adddepartment.php",
+                  url: "components/personnal/programming/program_editdepartment.php",
                   data: dataString,
                   cache: false,
                   success: function (data) {
+                      alert(data);
                       modal.find('.p').html(data);
                   },
                   error: function(err) {
