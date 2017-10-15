@@ -1,18 +1,24 @@
+<?php
+    $key = $_GET["key"];
+?>
+
+<?php 
+     $db = "(DESCRIPTION=(ADDRESS_LIST = (ADDRESS = (PROTOCOL = TCP)(HOST = 202.44.47.59)(PORT = 1521)))(CONNECT_DATA=(SID=svoa2)))";
+     $objConnect = oci_connect("oat","oracle",$db,'AL32UTF8');
+
+     $sql="select * from department where id_department = '$key'";
+     $objParse = oci_parse($objConnect, $sql);
+     oci_execute ($objParse,OCI_DEFAULT);
+     $objResult = oci_fetch_array($objParse,OCI_BOTH);
+?>
 <form>
-  <div class="form-group">
-    <label for="exampleInputEmail1">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-  </div>
-  <div class="form-check">
-    <label class="form-check-label">
-      <input type="checkbox" class="form-check-input">
-      Check me out
-    </label>
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+    <!-- ส่วนของฟอร์มเพิ่มฝ่าย -->
+    <div class="form-group">
+        <label for="exampleInputPassword1">รหัสฝ่าย</label>
+        <input type="text" name="id_department" class="form-control" value="<?php echo $objResult["ID_DEPARTMENT"];?>">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">ชื่อฝ่าย *</label>
+        <input type="text" name="name_department" class="form-control" value="<?php echo $objResult["NAME_DEPARTMENTS"];?>" required>
+    </div>
 </form>

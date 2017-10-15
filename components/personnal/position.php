@@ -16,6 +16,10 @@
             $('#myTable').DataTable();
         });
     </script>
+    <?php
+        echo $_POST["ID_DEPARTMENT"];
+        echo $_POST["NAME_DEPARTMENT"];
+    ?>
 </head>
 <body>
 <div id="error"></div>
@@ -83,65 +87,67 @@
 <!-- ควบคุมปุ่มเพิ่มฝ่าย-->
 <script>
         // เพิ่มฝ่าย
-        $('#formadddepartment').submit(function(evt)
-        {
-                    evt.preventDefault();
-                    var formData = new FormData($(this)[0]);
-                    $.ajax({
-                        async: true,
-                        url: 'components/personnal/programming/program_adddepartment.php',
-                        type: 'POST',
-                        data: formData,
-                        async: false,
-                        cache: false,
-                        contentType: false,
-                        processData: false,
-                        success :  function(response)
-                        {
-                                if(response.trim()=="0")
-                                {
-                                    $("#adddepartment").modal('toggle');
-                                    //  $('.modal-backdrop').hide();
-                                    $("#error").fadeIn(1000, function()
+        $(document).ready(function () {
+            $('#formadddepartment').submit(function(evt)
+            {
+                        evt.preventDefault();
+                        var formData = new FormData($(this)[0]);
+                        $.ajax({
+                            async: true,
+                            url: 'components/personnal/programming/program_adddepartment.php',
+                            type: 'POST',
+                            data: formData,
+                            async: false,
+                            cache: false,
+                            contentType: false,
+                            processData: false,
+                            success :  function(response)
+                            {
+                                    if(response.trim()=="0")
                                     {
-                                                $("#error").html('<div class="container"><div class="alert alert-success"> <span class="glyphicon glyphicon-info-sign"></span> &nbsp; </div></div>');
-                                    });
-                                }
-                                else
-                                {
-                                    $("#adddepartment").modal('toggle');
-                                    //  $('.modal-backdrop').hide();
-                                    $("#error").fadeIn(1000, function()
+                                        $("#adddepartment").modal('toggle');
+                                        //  $('.modal-backdrop').hide();
+                                        $("#error").fadeIn(1000, function()
+                                        {
+                                                    $("#error").html('<div class="container"><div class="alert alert-success"> <span class="glyphicon glyphicon-info-sign"></span> &nbsp; </div></div>');
+                                        });
+                                    }
+                                    else
                                     {
-                                                $("#error").html('<div class="container"><div class="alert alert-success"> <span class="glyphicon glyphicon-info-sign"></span> &nbsp; สำเร็จ ! !</div></div>');
-                                    });
-                                }
-                        }
-                    });
-        });
+                                        $("#adddepartment").modal('toggle');
+                                        //  $('.modal-backdrop').hide();
+                                        $("#error").fadeIn(1000, function()
+                                        {
+                                                    $("#error").html('<div class="container"><div class="alert alert-success"> <span class="glyphicon glyphicon-info-sign"></span> &nbsp; สำเร็จ ! !</div></div>');
+                                        });
+                                    }
+                            }
+                        });
+            });
 
         //แก้ไขฝ่าย
-
-        $('#editdepartment').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget) // Button that triggered the modal
-            var recipient = button.data('whatever') // Extract info from data-* attributes
-            var modal = $(this);
-            var dataString = 'key=' + recipient;
-              $.ajax({
-                  async: true,
-                  type: "GET",
-                  url: "components/personnal/programming/program_editdepartment.php",
-                  data: dataString,
-                  cache: false,
-                  success: function (data) {
-                      alert(data);
-                      modal.find('.p').html(data);
-                  },
-                  error: function(err) {
-                      console.log(err);
-                  }
-              });
-      })
+        
+            $('#editdepartment').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget) // Button that triggered the modal
+                var recipient = button.data('whatever') // Extract info from data-* attributes
+                var modal = $(this);
+                var dataString = 'key=' + recipient;
+                  $.ajax({
+                      async: true,
+                      type: "GET",
+                      url: "components/personnal/programming/program_editdepartment.php",
+                      data: dataString,
+                      cache: false,
+                      success: function (data) {
+                          modal.find('.p').html(data);
+                      },
+                      error: function(err) {
+                          console.log(err);
+                      }
+                  });
+            });
+    
+        });
 </script>
 </body>
 </html>
