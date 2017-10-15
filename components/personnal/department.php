@@ -70,7 +70,8 @@
               <tr>
                 <td><div align="center"><?php echo $objResult["ID_DEPARTMENT"];?></td>
                 <td><div align="center"><?php echo $objResult["NAME_DEPARTMENTS"];?></td>
-                <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#editdepartment" data-whatever="<?php echo $objResult["ID_DEPARTMENT"]; ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> edit</button></a> <button type="button" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button></td>
+                <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#editdepartment" data-whatever="<?php echo $objResult["ID_DEPARTMENT"]; ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> edit</button></a> 
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deletedepartment" data-whatever="<?php echo $objResult["ID_DEPARTMENT"]; ?>"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button></td>
               </tr>
         <?php 
               } 
@@ -157,7 +158,15 @@
                       }
                   });
             });
-    
+            
+            $('#deletedepartment').submit(function(evt){
+                var button = $(event.relatedTarget) // Button that triggered the modal
+                var recipient = button.data('whatever') // Extract info from data-* attributes
+                var modal = $(this);
+                var dataString = 'key=' + recipient;
+                
+                alert(dataString);
+            });
         });
 </script>
 </body>
