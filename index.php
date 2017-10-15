@@ -38,8 +38,8 @@
             include ("components/sale/order.php");
         if ($file=="report_sale")
             include ("components/sale/report_sale.php");
-        if ($file=="position")
-            include ("components/personnal/position.php");
+        if ($file=="department")
+            include ("components/personnal/department.php");
       ?>
 
 

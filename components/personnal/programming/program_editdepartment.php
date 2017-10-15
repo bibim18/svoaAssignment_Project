@@ -22,3 +22,7 @@
         <input type="text" name="name_department" class="form-control" value="<?php echo $objResult["NAME_DEPARTMENTS"];?>" required>
     </div>
 </form>
+<div class="modal-footer">
+        <button type="submit" name="save_edit_news" id="save_edit_news" class="btn btn-primary btn-sm" ><i class="fa fa-save fa-fw"></i> บันทึก</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
+</div>

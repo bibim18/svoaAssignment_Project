@@ -16,10 +16,24 @@
             $('#myTable').DataTable();
         });
     </script>
-    <?php
-        echo $_POST["ID_DEPARTMENT"];
-        echo $_POST["NAME_DEPARTMENT"];
-    ?>
+        <?php
+            include 'connect.php';
+        ?>
+        <?php
+            $id = @$_POST["id_department"];
+            $name = @$_POST["name_department"];
+        ?>
+
+        <?php 
+            if(isset($id)&&isset($name))
+            {
+                $sql="update department set name_departments='$name' where id_department='$id'";
+                $objParse = oci_parse($objConnect, $sql);
+                oci_execute ($objParse,OCI_DEFAULT);
+                $alert = '<div class="alert alert-info alert-dismissable"  style="margin-left:20px; margin-right:20px; margin-bottom:20px;"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>แก้ไขข้อมูลข่าวประชาสัมพันธ์ สำเร็จ</div>';
+            }
+            echo @$alert;
+        ?>
 </head>
 <body>
 <div id="error"></div>
@@ -35,9 +49,6 @@
           </div>
     </div>
     <div class="card-block">
-        <?php
-            include 'connect.php';
-        ?>
          <?php 
             $sql="select * from department";
             $objParse = oci_parse($objConnect, $sql);
