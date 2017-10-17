@@ -29,9 +29,16 @@
           oci_execute ($objParse,OCI_DEFAULT);
       ?>
       <div class="card" style="margin-left:20px; margin-right:20px; margin-bottom:20px;">
-        <div class="card-header">
-          จัดการลูกค้า
-        </div>
+    <div class="card-header">
+          <div class="name-header" style="width:93%; float:left; margin-top:4px;">
+          จัดการข้อมูลลูกค้า
+          </div>
+          <div style="float:left;">
+              <a href="components/sale/components/models/addcustomer.php"><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#addcustomer" align = "right" >
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i> เพิ่ม
+              </button></a>
+          </div>
+    </div>
         <div class="card-block">
             <br>
             <table id="myTable" class="display" cellspacing="0" width="100%">
@@ -57,7 +64,7 @@
                 <td><div align="center"><?php echo $objResult["CUS_TEL"];?></td>
                 <td><div align="center"><?php echo $objResult["TYPECUS_NAME"];?></td>
                 <td><a href="" onclick="return popitup('components/sale/components/models/edit_customer.php?cusID=<?php echo $objResult["CUS_ID"];?>')"><button type="button" class="btn btn-info"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> edit</button></a></td>
-                <td><a href="del_customer.php?submit=DEL&id=<?php echo $objResult["CUS_ID"];?>" onclick="return confirm('กรุณายืนยันการลบอีกครั้ง !!!')" "><button type="button" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button></td>
+                <td><a href='components/sale/components/models/del_customer.php?submit=DEL&id=<?=$objResult["CUS_ID"];?>' onclick="return confirm('กรุณายืนยันการลบอีกครั้ง !!!')"><button type="button" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button></td>
               </tr>
               <?php } ?>
             </table>
