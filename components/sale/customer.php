@@ -36,12 +36,12 @@
             <br>
             <table id="myTable" class="display" cellspacing="0" width="100%">
               <thead>
-                <td width="100px">รหัสลูกค้าองค์กร</td>
-                <td>ชื่อลูกค้าองค์กร</td>
+                <td width="100px">รหัสลูกค้า</td>
+                <td>ชื่อลูกค้า</td>
                 <td>ที่อยู่</td>
                 <td>อีเมล์</td>
                 <td>เบอร์โทรศัพท์</td>
-                <td width="200px">ประเภทลูกค้าองค์กร</td>
+                <td width="200px">ประเภทองค์กร</td>
                 <td>edit</td>
                 <td>delete</td>
               </thead>
@@ -56,8 +56,8 @@
                 <td><div align="center"><?php echo @$objResult["CUS_EMAIL"];?></td>
                 <td><div align="center"><?php echo $objResult["CUS_TEL"];?></td>
                 <td><div align="center"><?php echo $objResult["TYPECUS_NAME"];?></td>
-                <td><a href="" onclick="return popitup('components/sale/components/models/edit_customer.php?cusID=<?php echo $objResult["CUS_ID"];?>')"><button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> edit</button></a></td>
-                <td><button type="button" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button></td>
+                <td><a href="" onclick="return popitup('components/sale/components/models/edit_customer.php?cusID=<?php echo $objResult["CUS_ID"];?>')"><button type="button" class="btn btn-info"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> edit</button></a></td>
+                <td><a href="del_customer.php?submit=DEL&id=<?php echo $objResult["CUS_ID"];?>" onclick="return confirm('กรุณายืนยันการลบอีกครั้ง !!!')" "><button type="button" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button></td>
               </tr>
               <?php } ?>
             </table>
@@ -73,7 +73,5 @@
       if (window.focus) {newwindow.focus()}
       return false;
     }
-
-
     </script>
 </html>
