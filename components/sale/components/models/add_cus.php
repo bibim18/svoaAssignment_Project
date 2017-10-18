@@ -15,23 +15,33 @@
     </script>
 <body>
 <?
-$submit=$_GET["submit"];
-$id=$_GET["id"];
+$id = $_POST["gg"];
+$name = $_POST["param_name"];
+$add = $_POST["param_add"];
+$email = $_POST["param_mail"];
+$tel = $_POST["param_tel"];
+$type = $_POST["param_type"];
+if($type==1){$type="tc001";}
+else if($type==2){$type="tc002";}
+else if($type==3){$type="tc003";}
 $db = "(DESCRIPTION=(ADDRESS_LIST = (ADDRESS = (PROTOCOL = TCP)(HOST = 202.44.47.59)(PORT = 1521)))(CONNECT_DATA=(SID=svoa2)))";
-$objConnect = oci_connect("bibim","53402014Fg",$db,'AL32UTF8');
+    $objConnect = oci_connect("bibim","53402014Fg",$db,'AL32UTF8');
 
-if ($submit=="DEL"){
-              $txt="delete from customer where CUS_ID ='".$id."'";
+              $txt="insert into customer (CUS_ID,CUS_NAME,CUS_ADDRESS,CUS_EMAIL,CUS_TEL,TYPECUS_ID) values('$id','$name','$add','$email','$tel','$type')";
               $objParse = oci_parse($objConnect, $txt);
               $objExecute = oci_execute($objParse, OCI_DEFAULT);
+              if($objExecute)
+              {
               oci_commit($objConnect);
-              echo ' <script>alert("Deleted Success");</script>    
-              <Script Language="JavaScript">
-              window.history.back(); 
+              echo '<script>alert("Insert Success");</script><Script Language="JavaScript">
+              window.close(); 
               </Script>';
-       }
+              }
+              else{ 
+                echo  '<script>alert("Insert false");</script><Script Language="JavaScript">
+                window.history.back(); 
+                </Script>'; } 
 ?>
 
-   
 </body>
 </html>

@@ -1,41 +1,68 @@
-<?php
-  include '../../connect.php';
-?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Kanit" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="http://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+        $('#myTables').DataTable();
+    });
+    </script>
+</head>
+    <body  style="font-family: 'Kanit', sans-serif;">
+      <?php
+        $c=0;
+          include '../../connect.php';
+          $sql="select * from customer ";
+          $objParse = oci_parse($objConnect, $sql);
+          oci_execute ($objParse,OCI_DEFAULT);
+          while($objResult = oci_fetch_array($objParse,OCI_BOTH)){$c++;}
+      ?>
+      <form action="add_cus.php" method="post">
+      <table id="myTable" class="display" cellspacing="0" width="100%">
+        <tr>
+          <td width="100px">รหัสลูกค้าองค์กร</td>
+          <td><input type="text" name="param_id" value='<?echo "c".($c+1);?>' disabled="false"/> <input type="hidden" name="gg" value='<?echo "c".($c+1);?>'></td>
+        </tr>
+        <tr>
+          <td>ชื่อลูกค้าองค์กร</td>
+          <td><input type="text" name="param_name"/></td>
+        </tr>
+        <tr>
+          <td>ที่อยู่</td>
+            <td><input type="text" name="param_add" /></td>
+        </tr>
+        <tr>
+          <td>อีเมล์</td>
+            <td><input type="text" name="param_mail" /></td>
+        </tr>
+        <tr>
+          <td>เบอร์โทรศัพท์</td>
+            <td><input type="text" name="param_tel" /></td>
+        </tr>
+        <tr>
+          <td width="200px">ประเภทลูกค้าองค์กร</td>
+            <td>
+              <select name="param_type">
+                <option value="1">tc001 หน่วยงานราชการ</option>
+                <option value="2">tc002 บริษัทเอกชน/องค์กร</option>
+                <option value="3">tc003 ตัวแทนจำหน่าย</option>
+              </select>
 
-<!-- Modal Adddepartment-->
-<div class="modal fade" id="adddepartment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <form  method="get" enctype="multipart/form-data" id="formadddepartment" name="formadddepartment">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">เพิ่มข้อมูลฝ่ายงาน</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <!-- ส่วนของฟอร์มเพิ่มฝ่าย -->
-                <div class="form-group">
-                    <label for="exampleInputEmail1">รหัสฝ่าย</label>
-                    <?php
-                        $sql="select * from customer order by cus_id";
-                        $objParse = oci_parse($objConnect, $sql);
-                        oci_execute ($objParse,OCI_DEFAULT);
-                        $objResult = oci_fetch_array($objParse,OCI_BOTH);
-                    ?>
-                    <input type="text" name="id_department" class="form-control" value="<?php echo $objResult["ID_DEPARTMENT"]+1;?>">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">ชื่อฝ่าย *</label>
-                    <input type="text" name="name_department" class="form-control" placeholder="กรุณาใส่ชื่อฝ่าย" required>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" name="save-department" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-    </form>
-
-  </div>
-</div>
+            </td>
+        </tr>
+        <tr><td align="center"><input type="submit" value="insert" name="insert" ></td><td align="center"><input type='button' onClick="closeWindow()" value='close' /></td></tr>
+        <script>
+          function closeWindow() { self.opener=this; self.close();  }
+          </script>
+      </table>
+</form>
+    </body>
+</html>

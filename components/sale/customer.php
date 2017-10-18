@@ -34,9 +34,8 @@
           จัดการข้อมูลลูกค้า
           </div>
           <div style="float:left;">
-              <a href="components/sale/components/models/addcustomer.php"><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#addcustomer" align = "right" >
-                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i> เพิ่ม
-              </button></a>
+          <a href="" onclick="return popitup('components/sale/components/models/addcustomer.php')">
+          <button type="button" class="btn btn-info"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>เพิ่ม</button></a>
           </div>
     </div>
         <div class="card-block">
