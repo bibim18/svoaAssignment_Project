@@ -22,37 +22,43 @@
         <li class="breadcrumb-item active">Library</li>
       </ol> -->
       <?php
-
           include 'connect.php';
-          $sql="select product_name,date_srt,pro_detail,pro_time from bank.product join (select * from PROMOTION_DETAIL join  promotion  using(prom_id)) using(product_id)";
+          $sql="select prom_id,pro_detail,pro_time,typepro_name from promotion join TYPE_PROMOTION using(typepro_id)";
           $objParse = oci_parse($objConnect, $sql);
           oci_execute ($objParse,OCI_DEFAULT);
       ?>
       <div class="card" style="margin-left:20px; margin-right:20px; margin-bottom:20px;">
-    <div class="card-header">
-          <div class="name-header" style="width:93%; float:left; margin-top:4px;">
-          จัดการข้อมูล Promotion
-          </div>
-    </div>
+      <div class="card-header">
+      <div class="name-header" style="width:93%; float:left; margin-top:4px;">
+      จัดการข้อมูลโปรโมชั่น
+      </div>
+      <div style="float:left;">
+      <a href="" onclick="return popitup('components/sale/components/models/addpromotion.php')">
+      <button type="button" class="btn btn-info"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>เพิ่ม</button></a>
+      </div>
+</div>
         <div class="card-block">
             <br>
             <table id="myTable" class="display" cellspacing="0" width="100%">
               <thead>
-                <td width="300px" align="center">ชื่อสินค้า</td>
-                <td align="center">วันที่เริ่มจัดโปรโมชั่น</td>
-                <td align="center">รายละเอียดโปรโมชั่น</td>
-                <td align="center">ระยะเวลา(วัน)</td>
+                <td width="300px" align="center">รหัสโปรโมชั่น</td>
+                <td align="center">รายละเอียด</td>
+                <td align="center">ระยะเวลา(วัน)</td>  
+                <td align="center">ชนิดโปรโมชั่น</td>
+                <td>edit</td>
+                <td>delete</td>
               </thead>
               <?php
               while($objResult = oci_fetch_array($objParse,OCI_BOTH))
               {
               ?>
               <tr>
-                <td><div align="center"><?php echo $objResult["PRODUCT_NAME"];?></td>
-                <td><div align="center"><?php echo $objResult["DATE_SRT"];?></td>
+                <td><div align="center"><?php echo $objResult["PROM_ID"];?></td>
                 <td><div align="center"><?php echo $objResult["PRO_DETAIL"];?></td>
-                <td><div align="center"><?php echo @$objResult["PRO_TIME"];?></td>
-                
+                <td><div align="center"><?php echo $objResult["PRO_TIME"];?></td>
+                <td><div align="center"><?php echo $objResult["TYPEPRO_NAME"];?></td>
+                <td><a href="" onclick="return popitup('components/sale/components/models/edit_promotion.php?proID=<?php echo $objResult["PROM_ID"];?>')"><button type="button" class="btn btn-info"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> edit</button></a></td>
+                <td><a href='components/sale/components/models/del_promotion.php?submit=DEL&id=<?=$objResult["PROM_ID"];?>' onclick="return confirm('กรุณายืนยันการลบอีกครั้ง !!!')"><button type="button" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button></td>
               </tr>
               <?php } ?>
             </table>

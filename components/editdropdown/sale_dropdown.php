@@ -14,9 +14,6 @@
               <a href="index.php?depart=order">จัดการการสั่งซื้อ</a>
             </li>
             <li>
-              <a href="index.php?depart=report_sale">รายงาน</a>
-            </li>
-            <li>
               <!--กรณีทำ Sub Menu -->
               <!-- <a class="nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti2">Third Level</a>
               <ul class="sidenav-third-level collapse" id="collapseMulti2">

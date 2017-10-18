@@ -8,11 +8,11 @@
         <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Kanit" rel="stylesheet">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="../../css/jquery.dataTables.css">
+        <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
         <script type="text/javascript" charset="utf8" src="http://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
         <script type="text/javascript">
         $(document).ready(function(){
-            $('#myTables').DataTable();
+            $('#myTable').DataTable();
         });
         </script>
     </head>
@@ -22,6 +22,7 @@
         <li class="breadcrumb-item active">Library</li>
       </ol> -->
       <?php
+          ini_set('max_execution_time', 1000); 
           include 'connect.php';
           $sql="select cus_name,PO_ID,PO_DATE,PRODUCT_NAME,POD_QTY from bank.product join (select * from customer join (select * from purchase_order join purchase_order_detail using (po_id)) using(cus_id))using (product_id) order by po_id ";
           $objParse = oci_parse($objConnect, $sql);
@@ -29,11 +30,13 @@
       ?>
       <div class="card" style="margin-left:20px; margin-right:20px; margin-bottom:20px;">
         <div class="card-header">
-          จัดการสั่งซื้อ
+        <div class="name-header" style="width:93%; float:left; margin-top:4px;">
+          จัดการการสั่งซื้อ
+          </div>
         </div>
         <div class="card-block">
             <br>
-      <table id="myTables" class="display" cellspacing="0" width="100%">
+      <table id="myTable" class="display" cellspacing="0" width="100%">
         <thead>
           <td width="120px">ชื่อลูกค้าองค์กร</td>
           <td width="100px">เลขที่ใบสั่งซื้อ</td>
@@ -58,7 +61,7 @@
         </tr>
         <?php
         }
-        ?> 
+        ?>
       </table>
       </div>
     </div>

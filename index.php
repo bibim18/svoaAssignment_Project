@@ -36,8 +36,6 @@
             include ("components/sale/promotion.php");
         if ($file=="order")
             include ("components/sale/order.php");
-        if ($file=="report_sale")
-            include ("components/sale/report_sale.php");
         if ($file=="department")
             include ("components/personnal/department.php");
       ?>

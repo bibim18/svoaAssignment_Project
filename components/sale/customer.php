@@ -59,7 +59,7 @@
                 <td><div align="center"><?php echo $objResult["CUS_ID"];?></td>
                 <td><div align="center"><?php echo $objResult["CUS_NAME"];?></td>
                 <td><div align="center"><?php echo $objResult["CUS_ADDRESS"];?></td>
-                <td><div align="center"><?php echo @$objResult["CUS_EMAIL"];?></td>
+                <td><div align="center"><?php echo $objResult["CUS_EMAIL"];?></td>
                 <td><div align="center"><?php echo $objResult["CUS_TEL"];?></td>
                 <td><div align="center"><?php echo $objResult["TYPECUS_NAME"];?></td>
                 <td><a href="" onclick="return popitup('components/sale/components/models/edit_customer.php?cusID=<?php echo $objResult["CUS_ID"];?>')"><button type="button" class="btn btn-info"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> edit</button></a></td>

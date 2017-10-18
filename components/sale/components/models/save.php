@@ -10,7 +10,7 @@ if($type == 1){$type="tc001";}
     else {$type="tc003";}
     ?>
     <html>
-    <body>
+    <body style="font-family: 'Kanit', sans-serif;">
     <table class="display" cellspacing="0" width="100%">
       <tr>
         <td width="100px">รหัสลูกค้าองค์กร</td>
@@ -36,7 +36,7 @@ if($type == 1){$type="tc001";}
         <td width="200px">ประเภทลูกค้าองค์กร</td>
           <td><input type="text" name="param_type" value='<?echo $type;?>' disabled="false"/></td>
       </tr>
-      <tr><td align="center"><a href="update.php?i=<?=$cusid;?>&n=<?=$name;?>&a=<?=$add;?>&e=<?=$email;?>&t=<?=$tel;?>&tp=<?=$type;?>"><button>Confirm</button></a></td><td align="center"> <a href=javascript:history.back(1)><button>Back</button></a></td></tr>
+      <tr><td align="center"><a href="update.php?i=<?=$cusid;?>&n=<?=$name;?>&e=<?=$email;?>&a=<?=$add;?>&t=<?=$tel;?>&tp=<?=$type;?>"><button>Confirm</button></a></td><td align="center"> <a href=javascript:history.back(1)><button>Back</button></a></td></tr>
     </table>
   </body>
 </html>
