@@ -22,7 +22,7 @@
               </ul>
             </li>
             <li>
-              <a href="index.php?depart=emp">จัดการข้อมูลพนักงาน</a>
+              <a href="index.php?depart=employees">จัดการข้อมูลพนักงาน</a>
             </li>
             <li>
               <a href="index.php?depart=benefits">จัดการสวัสดิการพนักงาน</a>

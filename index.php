@@ -16,7 +16,7 @@
   <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
 
   <link href="css/sbs-admin.css" rel="stylesheet">
-
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Kanit" rel="stylesheet">
 </head>
 
@@ -38,9 +38,22 @@
             include ("components/sale/order.php");
         if ($file=="department")
             include ("components/personnal/department.php");
+        if ($file=="position")
+            include ("components/personnal/position.php");
+        if ($file=="basesalary")
+            include ("components/personnal/basesalary.php");
+        if ($file=="employees")
+        {
+            include ("components/personnal/employees.php");
+        }
       ?>
 
-
+      <?php 
+        if (!isset($_GET["id"]))
+        {
+            include("components/personnal/programming/program_seepersonnel.php");
+        }
+      ?>
 
       <!-- footer -->
       <?php include("components/template/footer.php") ?>

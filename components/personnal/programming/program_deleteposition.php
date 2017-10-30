@@ -2,7 +2,12 @@
 $a = $_GET["key"];
 $db = "(DESCRIPTION=(ADDRESS_LIST = (ADDRESS = (PROTOCOL = TCP)(HOST = 202.44.47.59)(PORT = 1521)))(CONNECT_DATA=(SID=svoa2)))";
 $objConnect = oci_connect("oat","oracle",$db,'AL32UTF8');
-$SQL = "DELETE  FROM  department  WHERE id_department = '$a'";
+
+$SQL1 = "DELETE  FROM  basesalary  WHERE id_position = '$a'";
+$objParse = oci_parse($objConnect, $SQL1);
+oci_execute($objParse, OCI_DEFAULT);
+
+$SQL = "DELETE  FROM  position  WHERE id_position = '$a'";
 $objParse = oci_parse($objConnect, $SQL);
 $abc = oci_execute($objParse, OCI_DEFAULT);
 if($abc)

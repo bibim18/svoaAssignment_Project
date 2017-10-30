@@ -19,38 +19,23 @@
         <?php
             include 'connect.php';
         ?>
-        <?php
-            $id = @$_POST["id_department"];
-            $name = @$_POST["name_department"];
-        ?>
-
-        <?php 
-            if(isset($id)&&isset($name))
-            {
-                $sql="update department set name_departments='$name' where id_department='$id'";
-                $objParse = oci_parse($objConnect, $sql);
-                oci_execute ($objParse,OCI_DEFAULT);
-                $alert = '<div class="alert alert-info alert-dismissable"  style="margin-left:20px; margin-right:20px; margin-bottom:20px;"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>แก้ไขข้อมูลข่าวประชาสัมพันธ์ สำเร็จ</div>';
-            }
-            echo @$alert;
-        ?>
 </head>
 <body>
 <div id="error"></div>
 <div class="card" style="margin-left:20px; margin-right:20px; margin-bottom:20px;">
     <div class="card-header">
           <div class="name-header" style="width:93%; float:left; margin-top:4px;">
-          จัดการแผนก
+          จัดการพนักงาน
           </div>
           <div style="float:left;">
-              <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#adddepartment" align = "right" >
+              <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#addpersonnel" align = "right" >
                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i> เพิ่ม
               </button>
           </div>
     </div>
     <div class="card-block">
          <?php 
-            $sql="select * from department";
+            $sql="select distinct * from employees";
             $objParse = oci_parse($objConnect, $sql);
             oci_execute ($objParse,OCI_DEFAULT);
          ?>
@@ -58,9 +43,11 @@
         <table id="myTable" class="display" cellspacing="0" width="100%">
             <br>
             <thead>
-                <td width="100px"><center>รหัสแผนก</center></td>
-                <td width="64%"><center>ชื่อแผนก</center></td>
-                <td>ดำเนินการ</td>
+                <td width="50px"><center>รหัสตำแหน่ง</center></td>
+                <td width="20%"><center>ชื่อ</center></td>
+                <td width="20%"><center>นามสกุล</center></td>
+                <td width="20%"><center>แผนก</center></td>
+                <td width="17%">ดำเนินการ</td>
 
             </thead>
         <?php
@@ -68,14 +55,16 @@
               {
               ?>
               <tr>
-                <td><div align="center"><?php echo $objResult["ID_DEPARTMENT"];?></td>
+                <td><div align="center"><?php echo $objResult["ID_PERSONNEL"];?></td>
+                <td><div align="center"><?php echo $objResult["NAME"];?></td>
+                <td><div align="center"><?php echo $objResult["LASTNAME"];?></td>
                 <td><div align="center"><?php echo $objResult["NAME_DEPARTMENTS"];?></td>
                 <td>
-                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#editdepartment" data-whatever="<?php echo $objResult["ID_DEPARTMENT"]; ?>">
-                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i> edit
-                    </button>
+                    <a href="index.php?depart=employee&employeeid=<?php echo $objResult["ID_PERSONNEL"];?>"><button type="button" class="btn btn-info" data-toggle="modal" data-target="#editpersonnel" data-whatever="<?php echo $objResult["ID_DEPARTMENT"]; ?>">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i> เปิดดู
+                    </button></a>
                     <button type="button" class="btn btn-danger" onClick="javascript:deleteNews('<?php echo $objResult["ID_DEPARTMENT"];?>'); window.location.reload();">
-                        <i class="fa fa-trash" aria-hidden="true"></i> Delete
+                        <i class="fa fa-trash" aria-hidden="true"></i> ลบ
                     </button>
                 </td>
               </tr>
@@ -89,15 +78,15 @@
 <!-- จัดการ model (popup)-->
 
     <!-- เพิ่มแผนก -->
-    <?php include("model/adddepartment.php") ?>
+    <?php include("model/addpersonnel.php") ?>
     <!-- เพิ่มแผนก -->
 
     <!-- แก้ไขแผนก -->
-    <?php include("model/editdepartment.php") ?>
+    <?php include("model/editpersonnel.php") ?>
     <!-- แก้ไขแผนก -->
 
     <!-- ลบแผนก -->
-    <?php include("model/deletedepartment.php") ?>
+    <?php include("model/deletepersonnel.php") ?>
     <!-- ลบแผนก -->
 
 <!-- จบจัดการ model (popup) -->
@@ -106,13 +95,13 @@
 <script>
         // เพิ่มฝ่าย
         $(document).ready(function () {
-            $('#formadddepartment').submit(function(evt)
+            $('#formaddpersonnel').submit(function(evt)
             {
                         evt.preventDefault();
                         var formData = new FormData($(this)[0]);
                         $.ajax({
                             async: true,
-                            url: 'components/personnal/programming/program_adddepartment.php',
+                            url: 'components/personnal/programming/program_addpersonnel.php',
                             type: 'POST',
                             data: formData,
                             async: false,
@@ -123,7 +112,7 @@
                             {
                                     if(response.trim()=="0")
                                     {
-                                        $("#adddepartment").modal('toggle');
+                                        $("#addpersonnel").modal('toggle');
                                         //  $('.modal-backdrop').hide();
                                         $("#error").fadeIn(1000, function()
                                         {
@@ -132,7 +121,7 @@
                                     }
                                     else
                                     {
-                                        $("#adddepartment").modal('toggle');
+                                        $("#addpersonnel").modal('toggle');
                                         //  $('.modal-backdrop').hide();
                                         $("#error").fadeIn(1000, function()
                                         {
@@ -145,7 +134,7 @@
 
         //แก้ไขฝ่าย
         
-            $('#editdepartment').on('show.bs.modal', function (event) {
+            $('#editpersonnel').on('show.bs.modal', function (event) {
                 var button = $(event.relatedTarget) // Button that triggered the modal
                 var recipient = button.data('whatever') // Extract info from data-* attributes
                 var modal = $(this);
@@ -153,7 +142,7 @@
                   $.ajax({
                       async: true,
                       type: "GET",
-                      url: "components/personnal/programming/program_editdepartment.php",
+                      url: "components/personnal/programming/program_editpersonnel.php",
                       data: dataString,
                       cache: false,
                       success: function (data) {
@@ -173,7 +162,7 @@
                 $.ajax({
                       async: true,
                       type: "GET",
-                      url: "components/personnal/programming/program_deletedepartment.php",
+                      url: "components/personnal/programming/program_deletepersonnel.php",
                       data: "key="+slidekey,
                       cache: false,
                       success: function (data) {
