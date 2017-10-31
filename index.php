@@ -27,9 +27,9 @@
 
 
       <?php
-        
 
-        $file = (! empty($_GET["depart"])) ? $_GET["depart"] : require ("components/template/countdetail.php"); 
+
+        $file = (! empty($_GET["depart"])) ? $_GET["depart"] : require ("components/template/countdetail.php");
         if ($file=="customer")
             include ("components/sale/customer.php");
         if ($file=="promotion")
@@ -46,12 +46,18 @@
         {
             include ("components/personnal/employees.php");
         }
-      ?>
-
-      <?php 
-        if (!isset($_GET["id"]))
+        /*ฝ่ายบริการ*/
+        if($file=="insure")
         {
-            include("components/personnal/programming/program_seepersonnel.php");
+          include ("components/service/insure.php");
+        }
+        if($file=="catagory_insures")
+        {
+          include ("components/service/catagory_insures.php");
+        }
+        if($file=="service")
+        {
+          include ("components/service/services.php");
         }
       ?>
 
