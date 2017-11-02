@@ -48,12 +48,6 @@
         }
       ?>
 
-      <?php 
-        if (!isset($_GET["id"]))
-        {
-            include("components/personnal/programming/program_seepersonnel.php");
-        }
-      ?>
 
       <!-- footer -->
       <?php include("components/template/footer.php") ?>
