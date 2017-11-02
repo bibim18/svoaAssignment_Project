@@ -46,6 +46,14 @@
         {
             include ("components/personnal/employees.php");
         }
+        if ($file=="benefits")
+        {
+            include ("components/personnal/benefits.php");
+        }
+        if ($file=="train")
+        {
+            include ("components/personnal/training.php");
+        }
       ?>
 
 
