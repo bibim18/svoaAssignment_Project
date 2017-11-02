@@ -23,14 +23,14 @@
     ?>
 
         <?php
-            $id = @$_POST["GENDERSERVICEID"];
-            $name = @$_POST["NAMEGENDER"];
+            $id = @$_POST["ID_GENDERINSURE"];
+            $name = @$_POST["NAME"];
         ?>
 
         <?php
             if(isset($id)&&isset($name))
             {
-                $sqlzz="update GENDERSERVICE set NAMEGENDER='$name' where GENDERSERVICEID='$id'";
+                $sqlzz="update GENDERINSURE set NAME='$name' where ID_GENDERINSURE='$id'";
                 $objParsezz = oci_parse($objConnects, $sqlzz);
                 oci_execute ($objParsezz,OCI_DEFAULT);
                 $alert = '<div class="alert alert-info alert-dismissable"  style="margin-left:20px; margin-right:20px; margin-bottom:20px;"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>แก้ไขข้อมูลข่าวประชาสัมพันธ์ สำเร็จ</div>';
@@ -43,10 +43,10 @@
 <div class="card" style="margin-left:20px; margin-right:20px; margin-bottom:20px;">
     <div class="card-header">
           <div class="name-header" style="width:93%; float:left; margin-top:4px;">
-          จัดการบริการ
+          จัดการประเภทบริการ
           </div>
           <div style="float:left;">
-              <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#addservices" align = "right" >
+              <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#addcatagory_insures" align = "right" >
                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i> เพิ่ม
               </button>
           </div>
@@ -55,7 +55,7 @@
          <?php
              $db = "(DESCRIPTION=(ADDRESS_LIST = (ADDRESS = (PROTOCOL = TCP)(HOST= 202.44.47.59)(PORT = 1521)))(CONNECT_DATA=(SID=svoa2)))";
              $objConnect = oci_connect("tee","oracle",$db);
-             $strSQL = "SELECT * FROM GENDERSERVICE";
+             $strSQL = "SELECT * FROM GENDERINSURE";
              $objParse = oci_parse($objConnect, $strSQL);
              oci_execute ($objParse,OCI_DEFAULT);
          ?>
@@ -63,8 +63,8 @@
         <table id="myTable" class="display" cellspacing="0" width="100%">
             <br>
             <thead>
-                 <th width="91"> <div align="center">รหัสการบริการ </div></th>
-                 <th width="98"> <div align="center">ชื่อการบริการ </div></th>
+                 <th width="91"> <div align="center">รหัสการประเภทบริการ </div></th>
+                 <th width="98"> <div align="center">ชื่อการประเภทบริการ </div></th>
                  <th width="198"> <div align="center">จัดการข้อมูล</th>
             </thead>
         <?php
@@ -72,14 +72,14 @@
               {
               ?>
               <tr>
-                <td><div align="center"><?php echo $objResult["GENDERSERVICEID"];?></div></td>
-                <td><center><?php echo $objResult["NAMEGENDER"];?></center></td>
+                <td><div align="center"><?php echo $objResult["ID_GENDERINSURE"];?></div></td>
+                <td><center><?php echo $objResult["NAME"];?></center></td>
 
                 <td>
-                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal" data-whatever="<?php echo $objResult["GENDERSERVICEID"]; ?>">
+                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal" data-whatever="<?php echo $objResult["ID_GENDERINSURE"]; ?>">
                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit
                     </button>
-                    <button type="button" class="btn btn-danger" onClick="javascript:deleteNews('<?php echo $objResult["GENDERSERVICEID"];?>'); window.location.reload();">
+                    <button type="button" class="btn btn-danger" onClick="javascript:deleteNews('<?php echo $objResult["ID_GENDERINSURE"];?>'); window.location.reload();">
                         <i class="fa fa-trash" aria-hidden="true"></i> Delete
                     </button>
                 </td>
@@ -95,11 +95,11 @@
 
 <!-- จัดการ model (popup)-->
     <!-- แก้ไขแผนก -->
-    <?php include("model/editservices.php") ?>
+    <?php include("model/editcatagory_insures.php") ?>
     <!-- แก้ไขแผนก -->
 
     <!-- เพิ่มแผนก -->
-    <?php include("model/addservices.php") ?>
+    <?php include("model/addcatagory_insures.php") ?>
     <!-- เพิ่มแผนก -->
 
 
@@ -110,13 +110,13 @@
 <script>
         // เพิ่มฝ่าย
         $(document).ready(function () {
-               $('#formaddservices').submit(function(evt)
+               $('#formaddcatagory_insures').submit(function(evt)
                {
                            evt.preventDefault();
                            var formData = new FormData($(this)[0]);
                            $.ajax({
                                async: true,
-                               url: 'components/service/programming/program_addservices.php',
+                               url: 'components/service/programming/program_addcatagory_insures.php',
                                type: 'POST',
                                data: formData,
                                async: false,
@@ -127,7 +127,7 @@
                                {
                                        if(response.trim()=="0")
                                        {
-                                           $("#addservices").modal('toggle');
+                                           $("#addcatagory_insures").modal('toggle');
                                            //  $('.modal-backdrop').hide();
                                            $("#error").fadeIn(1000, function()
                                            {
@@ -136,7 +136,7 @@
                                        }
                                        else
                                        {
-                                           $("#addservices").modal('toggle');
+                                           $("#addcatagory_insures").modal('toggle');
                                            //  $('.modal-backdrop').hide();
                                            $("#error").fadeIn(1000, function()
                                            {
@@ -159,7 +159,7 @@
                               $.ajax({
                                   async: true,
                                   type: "GET",
-                                  url: "components/service/programming/program_editservices.php",
+                                  url: "components/service/programming/program_editcatagory_insures.php",
                                   data: dataString,
                                   cache: false,
                                   success: function (data) {
@@ -179,7 +179,7 @@
                 $.ajax({
                       async: true,
                       type: "GET",
-                      url: "components/service/programming/program_deleteservices.php",
+                      url: "components/service/programming/program_deletecatagory_insures.php",
                       data: "key="+slidekey,
                       cache: false,
                       success: function (data) {

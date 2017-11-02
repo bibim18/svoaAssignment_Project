@@ -51,7 +51,7 @@
         {
           include ("components/service/insure.php");
         }
-        if($file=="catagory_insures")
+        if($file=="catagory_insure")
         {
           include ("components/service/catagory_insures.php");
         }

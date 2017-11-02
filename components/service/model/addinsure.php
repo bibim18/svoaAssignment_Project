@@ -32,8 +32,8 @@
                     <input type="text" name="name_insure" class="form-control" placeholder="กรุณาใส่ชื่อประกัน" required>
                 </div>
                 <div class="form-group">
-                    <label for="insure">ตำแหน่ง</label>
-                    <select name="name_insure" class="form-control" id="sel1">
+                    <label for="insure">ประเภทประกัน</label>
+                    <select name="type_insure" class="form-control" id="sel1">
                             <?php
                                 $sql="select * from genderinsure";
                                 $objParse = oci_parse($objConnect, $sql);
