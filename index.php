@@ -27,9 +27,9 @@
 
 
       <?php
-        
 
-        $file = (! empty($_GET["depart"])) ? $_GET["depart"] : require ("components/template/countdetail.php"); 
+
+        $file = (! empty($_GET["depart"])) ? $_GET["depart"] : require ("components/template/countdetail.php");
         if ($file=="customer")
             include ("components/sale/customer.php");
         if ($file=="promotion")

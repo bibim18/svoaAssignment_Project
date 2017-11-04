@@ -17,7 +17,7 @@
                 <!-- ส่วนของฟอร์มเพิ่มฝ่าย -->
                 <div class="form-group">
                     <label for="exampleInputEmail1">รหัสฝ่าย</label>
-                    <?php 
+                    <?php
                         $sql="select max(id_department) as id_department from department order by id_department";
                         $objParse = oci_parse($objConnect, $sql);
                         oci_execute ($objParse,OCI_DEFAULT);
@@ -36,8 +36,6 @@
             </div>
         </div>
     </form>
-    
+
   </div>
 </div>
-
-
