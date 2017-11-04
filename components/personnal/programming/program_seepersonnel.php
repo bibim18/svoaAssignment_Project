@@ -6,6 +6,7 @@
       $objConnect = oci_connect("oat","oracle",$db,'AL32UTF8');
 ?>
 <div class="container">
+
     <?php 
                 $sql="select distinct * from employees where id_personnel = '$employeeid'";
                 $objParse = oci_parse($objConnect, $sql);
@@ -29,21 +30,41 @@
             oci_execute ($objParse,OCI_DEFAULT);
             $objResult = oci_fetch_array($objParse,OCI_BOTH);    
     ?>
-    <ul class="nav nav-tabs">
-        <li class="nav-item">
-            <a class="nav-link active" data-toggle="tab" href="#home">ประวัติพนักงาน</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#menu1">ประวัติการศึกษา/ประวัติการทำงาน/ข้อมูลอื่นๆ</a>
-        </li>
-    </ul>
+            <?php include("profilepersonnel/personnelprofile.php"); ?>  
+     <br>
+     <br>
+     <div class="col-md-12" style="float:left;">
+     <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#home">ประวัติการศึกษา</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#menu1">ประวัติการทำงาน</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#menu2">ประวัติการฝึกอบรม</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#menu3">สัญญาจ้างงาน</a>
+            </li>
+        </ul>
 
-    <div class="tab-content">
-        <div id="home" class="tab-pane fade in active">
-            <?php include("profilepersonnel/personnelprofile.php"); ?>
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div id="home" class="container tab-pane active"><br>  
+                <?php include("profilepersonnel/eduwork.php"); ?>  
+            </div>
+            <div id="menu1" class="container tab-pane fade"><br>
+                <?php include("profilepersonnel/workingpast.php"); ?> 
+            </div>
+            <div id="menu2" class="container tab-pane fade"><br>
+                <?php include("profilepersonnel/training.php"); ?> 
+            </div>
+            <div id="menu3" class="container tab-pane fade"><br>
+                <?php include("profilepersonnel/contract.php"); ?> 
+            </div>
         </div>
     </div>
-
-
 </div>
 

@@ -5,13 +5,13 @@
           </a>
           <ul class="sidenav-second-level collapse" id="service">
             <li>
-              <a href="index.php?depart=sale">Navbar</a>
+              <a href="index.php?depart=insure">จัดการประกัน</a>
             </li>
             <li>
-              <a href="index.php?depart=sale">Cards</a>
+              <a href="index.php?depart=catagory_insure">จัดการประเภทประกัน</a>
             </li>
             <li>
-              <a href="cards.html">Cards</a>
+              <a href="index.php?depart=service">จัดการบริการ</a>
             </li>
           </ul>
         </li>

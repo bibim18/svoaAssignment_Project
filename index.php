@@ -54,6 +54,20 @@
         {
             include ("components/personnal/training.php");
         }
+
+                /*ฝ่ายบริการ*/
+                if($file=="insure")
+                {
+                  include ("components/service/insure.php");
+                }
+                if($file=="catagory_insure")
+                {
+                  include ("components/service/catagory_insures.php");
+                }
+                if($file=="service")
+                {
+                  include ("components/service/services.php");
+                }
       ?>
 
 

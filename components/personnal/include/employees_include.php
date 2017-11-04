@@ -38,12 +38,12 @@
                 <td><div align="center"><?php echo $objResult["NAME_DEPARTMENTS"];?></td>
                 <td>
                     <form  method="get" enctype="multipart/form-data" id="openemployees" name="openemployees">
-                        <a href="index.php?depart=employees&employeeid=<?php echo $objResult["ID_PERSONNEL"];?>">
+                        <a href="index.php?depart=employees&employeeid=<?php echo $objResult["ID_PERSONNEL"];?>&activeTab=home">
                             <input type="hidden" name="openemployees"  value="<?php echo $objResult["ID_PERSONNEL"];?>">
-                            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#editpersonnel" data-whatever="<?php echo $objResult["ID_DEPARTMENT"]; ?>">
+                            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#editpersonnel" data-whatever="<?php echo $objResult["ID_PERSONNEL"]; ?>">
                             <i class="fa fa-pencil-square-o" aria-hidden="true"></i> เปิดดู
                         </button></a>
-                        <button type="button" class="btn btn-danger" onClick="javascript:deleteNews('<?php echo $objResult["ID_DEPARTMENT"];?>'); window.location.reload();">
+                        <button type="button" class="btn btn-danger" onClick="javascript:deleteNews('<?php echo $objResult["ID_PERSONNEL"];?>'); window.location.reload();">
                             <i class="fa fa-trash" aria-hidden="true"></i> ลบ
                         </button>
                     </form>
@@ -121,23 +121,24 @@
         //     });
         // });
 
-        // function deleteNews(slidekey)
-        // {
-        //     if(confirm("ต้องการจะลบข่าวประชาสัมพันธ์นี้ใช่หรือไม่ ?"))
-        //     {
-        //         $.ajax({
-        //               async: true,
-        //               type: "GET",
-        //               url: "components/personnal/programming/program_deletepersonnel.php",
-        //               data: "key="+slidekey,
-        //               cache: false,
-        //               success: function (data) {
-        //                      $("#error").html('<div class="container"><div class="alert alert-success"> <span class="glyphicon glyphicon-info-sign"></span> ลบเรียบร้อย </div></div>');
-        //               },
-        //               error: function(err) {
-        //                   console.log(err);
-        //               }
-        //           });
-        //     }
-        // }
+        function deleteNews(slidekey)
+        {
+            if(confirm("ต้องการจะลบบุคคลากรนี้ใช่หรือไม่ ?"))
+            {
+                $.ajax({
+                      async: true,
+                      type: "GET",
+                      url: "components/personnal/programming/program_deletepersonnel.php",
+                      data: "key="+slidekey,
+                      cache: false,
+                      success: function (data) {
+                             console.log(data);
+                             $("#error").html('<div class="container"><div class="alert alert-success"> <span class="glyphicon glyphicon-info-sign"></span> ลบเรียบร้อย </div></div>');
+                      },
+                      error: function(err) {
+                             console.log(err);
+                      }
+                  });
+            }
+        }
 </script>
