@@ -1,7 +1,7 @@
 
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog" role="document">
-    <form id="formeditposition" name="formeditposition" enctype="multipart/form-data" method="post">
+    <form id="formaddcatagory_insures" name="formaddcatagory_insures" enctype="multipart/form-data" method="post">
         <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title">แก้ไขข้อมูล</h5>

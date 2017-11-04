@@ -95,11 +95,11 @@
 
 <!-- จัดการ model (popup)-->
     <!-- แก้ไขแผนก -->
-    <?php include("model/editcatagory_insures.php") ?>
+    <?php include("model/editcatagory_insure.php") ?>
     <!-- แก้ไขแผนก -->
 
     <!-- เพิ่มแผนก -->
-    <?php include("model/addcatagory_insures.php") ?>
+    <?php include("model/addcatagory_insure.php") ?>
     <!-- เพิ่มแผนก -->
 
 
