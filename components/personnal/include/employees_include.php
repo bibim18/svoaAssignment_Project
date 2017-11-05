@@ -2,12 +2,10 @@
 <div class="card" style="margin-left:20px; margin-right:20px; margin-bottom:20px;">
     <div class="card-header">
           <div class="name-header" style="width:93%; float:left; margin-top:4px;">
-          จัดการพนักงาน
+          ข้อมูลพนักงาน
           </div>
           <div style="float:left;">
-              <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#addpersonnel" align = "right" >
-                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i> เพิ่ม
-              </button>
+              
           </div>
     </div>
     <div class="card-block">
@@ -43,9 +41,6 @@
                             <button type="button" class="btn btn-info" data-toggle="modal" data-target="#editpersonnel" data-whatever="<?php echo $objResult["ID_PERSONNEL"]; ?>">
                             <i class="fa fa-pencil-square-o" aria-hidden="true"></i> เปิดดู
                         </button></a>
-                        <button type="button" class="btn btn-danger" onClick="javascript:deleteNews('<?php echo $objResult["ID_PERSONNEL"];?>'); window.location.reload();">
-                            <i class="fa fa-trash" aria-hidden="true"></i> ลบ
-                        </button>
                     </form>
                 </td>
               </tr>
@@ -55,6 +50,7 @@
         </table>
     </div>
 </div>
+
 
 
 <!-- ควบคุมปุ่มเพิ่มฝ่าย-->
