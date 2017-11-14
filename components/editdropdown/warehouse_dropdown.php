@@ -5,16 +5,16 @@
           </a>
           <ul class="sidenav-second-level collapse" id="collapseExamplePages">
             <li>
-              <a href="index.php?depart=warehouse">Login Page</a>
+              <a href="/components/warehouse/product.php">จัดการข้อมูลสินค้า</a>
             </li>
             <li>
-              <a href="register.html">Registration Page</a>
+              <a href="/components/warehouse/pack.php">จัดการข้อมูลแพ็คสินค้า</a>
             </li>
             <li>
-              <a href="forgot-password.html">Forgot Password Page</a>
+              <a href="/components/warehouse/product-in.php">จัดการการนำเข้าสินค้า</a>
             </li>
             <li>
-              <a href="blank.html">Blank Page</a>
+              <a href="/components/warehouse/invoice.php">จัดการใบส่งสินค้า</a>
             </li>
           </ul>
         </li>
